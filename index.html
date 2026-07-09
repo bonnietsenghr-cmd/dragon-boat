@@ -138,25 +138,23 @@ body {
 </div>
 
 <script>
-    let count = 0, playing = false;
+let count = 0, playing = false;
 
-    // 划槳功能：負責啟動音樂與遊戲邏輯
+    // 划槳功能
     function paddle() {
-        // 1. 啟動音樂 (iframe ID 為 bgPlayer)
         const player = document.getElementById("bgPlayer");
+        // 啟動音樂
         if (player && !player.dataset.started) {
             player.src += "&autoplay=1";
-            player.dataset.started = "true"; 
+            player.dataset.started = "true";
         }
 
-        // 2. 工號檢查
         let id = document.getElementById('empId').value;
         if (!id) { 
             alert("請記得先輸入工號喔！"); 
             return; 
         }
 
-        // 3. 遊戲邏輯
         if (!playing) {
             playing = true; 
             count = 0;
@@ -172,14 +170,13 @@ body {
         document.getElementById('count-display').innerText = count;
     }
 
-    // 預測功能：乾淨的邏輯，不干涉音樂
+    // 預測功能：修正為正確呼叫，且不干擾音樂
     function submitPrediction() {
         let team = document.getElementById('teamSelection').value;
         if (!team) { 
-            alert("請選擇一隊喔！"); 
+            alert("請選出心中的冠軍隊伍喔！"); 
             return; 
         }
-        // 移除所有與音樂相關的代碼，音樂會自動持續播放
         alert("預測完成！您選擇的是：" + team);
     }
 </script>
