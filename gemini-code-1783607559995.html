@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+    <meta charset="UTF-8">
+    <title>乘風破浪吧！台達熱血線上划槳暨神預測活動～</title>
+    <style>
+        :root {
+            --delta-blue: #007bb6;
+            --delta-cyan: #00d4ff;
+            --deep-navy: #003366;
+            --soft-white: #f8fbff;
+        }
+
+        body { 
+            text-align: center; 
+            font-family: '微軟正黑體', sans-serif; 
+            background: linear-gradient(135deg, #eef7ff 0%, #dcf0ff 100%); 
+            margin: 0; padding: 20px; 
+            color: var(--deep-navy);
+        }
+        .container { max-width: 650px; margin: auto; }
+        
+        .card { 
+            background: #ffffff; 
+            padding: 25px; 
+            margin-bottom: 25px; 
+            border-radius: 25px; 
+            box-shadow: 0 10px 30px rgba(0, 123, 182, 0.15); 
+            border: 1px solid rgba(255,255,255,0.8);
+            text-align: left;
+        }
+        
+        .comic-img { width: 100%; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
+        
+        h1 { color: var(--deep-navy); margin-bottom: 20px; font-size: 1.8em; text-align: center; }
+        h3 { color: var(--delta-blue); margin-top: 0; }
+        
+        #paddle-btn, .submit-btn { 
+            display: block; margin: 20px auto;
+            font-size: 1.5em; padding: 15px 40px; cursor: pointer; 
+            background: linear-gradient(90deg, var(--delta-blue), var(--delta-cyan)); 
+            color: white; border: none; border-radius: 50px; 
+            box-shadow: 0 8px 20px rgba(0, 123, 182, 0.3);
+            font-weight: bold; transition: 0.3s;
+        }
+        #paddle-btn:hover, .submit-btn:hover { transform: translateY(-3px) scale(1.02); }
+
+        #count-display { font-size: 4em; font-weight: bold; color: var(--delta-blue); margin: 15px 0; text-align: center; }
+        input, select { padding: 12px 20px; font-size: 1.1em; width: 90%; border-radius: 12px; border: 2px solid #bce1ff; margin-bottom: 15px; display: block; margin: 0 auto; }
+        .highlight { color: #d63384; font-weight: bold; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>🛶 乘風破浪吧！<br>台達熱血線上划槳暨神預測活動～</h1>
+    
+    <div class="card">
+        <img src="https://lh3.googleusercontent.com/d/1fNrHk2WqycPKo6TmUutbGemFCEFmsrfF" class="comic-img" alt="龍舟傳說漫畫">
+    </div>
+
+    <div class="card">
+        <h3>🏆 辦公室熱血划槳挑戰</h3>
+        <p><b>活動辦法：</b></p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+            <li><b>挑戰期限：</b>即日起至 8/14(五) 17:30 前完成挑戰。</li>
+            <li><b>規則：</b>點擊下方按鈕，在 <span class="highlight">10 秒內</span>盡力點擊划槳！</li>
+            <li><b>參賽規則：</b>每人最多挑戰 3 次，系統自動記錄最高成績。</li>
+            <li><b>榮耀獎勵：</b>活動結束後，總榜前 10 名獲精美紀念禮品。</li>
+        </ul>
+        <input type="text" id="empId" placeholder="請輸入工號">
+        <div id="count-display">0</div>
+        <button id="paddle-btn" onclick="paddle()">熱血划槳！</button>
+    </div>
+
+    <div class="card">
+        <h3>🔮 神預測活動</h3>
+        <p><b>活動辦法：</b></p>
+        <ul style="padding-left: 20px; margin-bottom: 20px;">
+            <li><b>預測期限：</b>即日起至 9/18(五) 17:30 止。</li>
+            <li><b>參加規則：</b>選出心目中的冠軍隊伍，若該隊伍最終獲得前八名，即可獲得抽獎資格！</li>
+            <li><b>獎勵說明：</b>成功預測者即可參加抽獎，有機會獲得精美小禮品。</li>
+        </ul>
+        <select id="teamSelection">
+            <option value="">請選擇您看好的冠軍隊伍</option>
+            <option value="BBC">BBC</option>
+            <option value="划起來通通給我划起來">划起來通通給我划起來</option>
+            <option value="羽知識，衝股價">羽知識，衝股價</option>
+            <option value="SSI是否在台達拯救過製造">SSI是否在台達拯救過製造</option>
+            <option value="好划一直划">好划一直划</option>
+            <option value="女友不會李多慧">女友不會李多慧</option>
+            <option value="一槳一心、一划到底，管你划不划，我們一起槳上划！">一槳一心、一划到底，管你划不划，我們一起槳上划！</option>
+            <option value="晶舟勇士隊">晶舟勇士隊</option>
+            <option value="晶皮力進隊">晶皮力進隊</option>
+            <option value="子子">子子</option>
+            <option value="台達鐵達尼">台達鐵達尼</option>
+            <option value="台達DD龍">台達DD龍</option>
+            <option value="佳人們講龍舟了">佳人們講龍舟了</option>
+            <option value="划水第一名">划水第一名</option>
+            <option value="追我要排隊4.0">追我要排隊4.0</option>
+            <option value="龍咚龍咚搶第一">龍咚龍咚搶第一</option>
+            <option value="水冷划冷水">水冷划冷水</option>
+            <option value="合力要他命EX">合力要他命EX</option>
+            <option value="乘風破爛用腳划龍舟">乘風破爛用腳划龍舟</option>
+            <option value="滑達硬漢不會停">滑達硬漢不會停</option>
+            <option value="斯巴達勇士2.0">斯巴達勇士2.0</option>
+            <option value="雷蛇的大蟒蛇">雷蛇的大蟒蛇</option>
+            <option value="EVS電馭破浪者">EVS電馭破浪者</option>
+            <option value="綠咖哩划椰奶">綠咖哩划椰奶</option>
+            <option value="酸辣龍蝦湯">酸辣龍蝦湯</option>
+            <option value="槳拌青木瓜">槳拌青木瓜</option>
+            <option value="涼拌肌肉隊">涼拌肌肉隊</option>
+            <option value="只會出一張嘴">只會出一張嘴</option>
+            <option value="加入台達，人生發達3.0">加入台達，人生發達3.0</option>
+            <option value="資訊DataCenter整合艦隊">資訊DataCenter整合艦隊</option>
+            <option value="中壢健身路跑社">中壢健身路跑社</option>
+            <option value="ESP龍抬頭">ESP龍抬頭</option>
+            <option value="量子機器人">量子機器人</option>
+            <option value="TW3 滑蛋瘦肉舟隊">TW3 滑蛋瘦肉舟隊</option>
+            <option value="全糖不減速">全糖不減速</option>
+            <option value="超過我就是你不隊">超過我就是你不隊</option>
+            <option value="Taina very sweet">Taina very sweet</option>
+            <option value="What">What</option>
+        </select>
+        <button class="submit-btn" onclick="submitPrediction()">送出預測</button>
+    </div>
+</div>
+
+<script>
+    let count = 0, playing = false;
+    function paddle() {
+        let id = document.getElementById('empId').value;
+        if (!id) { alert("請記得先輸入工號喔！"); return; }
+        if (!playing) {
+            playing = true; count = 0;
+            document.getElementById('count-display').innerText = count;
+            alert("賽事開始！請準備在 10 秒內全力衝刺！");
+            setTimeout(() => {
+                playing = false;
+                alert("時間到！您的總成績：" + count + " 下！");
+            }, 10000);
+        }
+        count++;
+        document.getElementById('count-display').innerText = count;
+    }
+
+    function submitPrediction() {
+        let team = document.getElementById('teamSelection').value;
+        if (!team) { alert("請選擇一隊喔！"); return; }
+        alert("預測成功！您選擇的是：" + team);
+    }
+</script>
+</body>
+</html>
