@@ -128,22 +128,36 @@
 <script>
     let count = 0, playing = false;
 // 在原本的 <script> 區塊中，將原本的函式改成這樣：
-    function paddle() {
-        document.getElementById("bgMusic").play(); // 加入這行來播放音樂
-        let id = document.getElementById('empId').value;
-        if (!id) { alert("請記得先輸入工號喔！"); return; }
-        if (!playing) {
-            playing = true; count = 0;
-            document.getElementById('count-display').innerText = count;
-            alert("賽事開始！");
-            setTimeout(() => {
-                playing = false;
-                alert("時間到！您的總成績：" + count + " 下！");
-            }, 10000);
-        }
-        count++;
-        document.getElementById('count-display').innerText = count;
+function paddle() {
+    // 1. 嘗試啟動音樂（處理瀏覽器自動播放限制）
+    const player = document.getElementById("bgPlayer");
+    if (player && !player.dataset.started) {
+        player.src += "&autoplay=1";
+        player.dataset.started = "true"; // 標記音樂已啟動
     }
+
+    // 2. 工號檢查 (確保只有一個 let id)
+    let id = document.getElementById('empId').value;
+    if (!id) { 
+        alert("請記得先輸入工號喔！"); 
+        return; 
+    }
+
+    // 3. 遊戲邏輯
+    if (!playing) {
+        playing = true; 
+        count = 0;
+        document.getElementById('count-display').innerText = count;
+        alert("賽事開始！");
+        setTimeout(() => {
+            playing = false;
+            alert("時間到！您的總成績：" + count + " 下！");
+        }, 10000);
+    }
+    
+    count++;
+    document.getElementById('count-display').innerText = count;
+}
 
     function submitPrediction() {
         document.getElementById("bgMusic").play(); // 加入這行來播放音樂
@@ -153,8 +167,6 @@
     }
 </script>
     <!-- 加入這段音樂來源 -->
-<audio id="bgMusic" loop>
-    <source src="https://actions.google.com/sounds/v1/sports/drag_race_start.ogg" type="audio/ogg">
-</audio>
+<iframe id="bgPlayer" style="display:none;" src="https://www.youtube.com/embed/mrgd01NHZtA?autoplay=1&loop=1&playlist=mrgd01NHZtA" allow="autoplay"></iframe>
 </body>
 </html>
