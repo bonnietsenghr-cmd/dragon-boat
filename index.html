@@ -49,10 +49,17 @@
         #count-display { font-size: 4em; font-weight: bold; color: var(--delta-blue); margin: 15px 0; text-align: center; }
         input, select { padding: 12px 20px; font-size: 1.1em; width: 90%; border-radius: 12px; border: 2px solid #bce1ff; margin-bottom: 15px; display: block; margin: 0 auto; }
         .highlight { color: #d63384; font-weight: bold; }
-        input, select, button {
-            font-size: 16px !important;
-            -webkit-text-size-adjust: 100%;
-        }
+        input, select, textarea, button {
+    touch-action: manipulation; /* 防止雙擊縮放 */
+    font-size: 16px !important; /* 強制 16px 防止 iOS 自動放大 */
+    padding: 12px; /* 增加點擊區域 */
+}
+
+/* 確保網頁本體不會因為點擊輸入框而被「撐開」或「偏移」 */
+body {
+    position: relative;
+    overflow-x: hidden;
+}
     </style>
 </head>
 <body>
