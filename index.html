@@ -64,9 +64,8 @@
         <p><b>活動辦法：</b></p>
         <ul style="padding-left: 20px; margin-bottom: 20px;">
             <li><b>挑戰期限：</b>即日起至 8/14(五) 17:30 前完成挑戰。</li>
-            <li><b>規則：</b>點擊下方按鈕，在 <span class="highlight">10 秒內</span>盡力點擊划槳！</li>
-            <li><b>參賽規則：</b>每人最多挑戰 3 次，系統自動記錄最高成績。</li>
-            <li><b>榮耀獎勵：</b>活動結束後，總榜前 10 名獲精美紀念禮品。</li>
+            <li><b>參賽規則：</b>點擊下方按鈕，在 <span class="highlight">10 秒內</span>盡力點擊划槳！每人最多挑戰 3 次，系統自動記錄最高成績。</li>
+            <li><b>榮耀獎勵：</b>活動結束後，總榜前30名獲精美紀念禮品。</li>
         </ul>
         <input type="text" id="empId" placeholder="請輸入工號">
         <div id="count-display">0</div>
@@ -78,7 +77,7 @@
         <p><b>活動辦法：</b></p>
         <ul style="padding-left: 20px; margin-bottom: 20px;">
             <li><b>預測期限：</b>即日起至 9/18(五) 17:30 止。</li>
-            <li><b>參加規則：</b>選出心目中的冠軍隊伍，若該隊伍最終獲得前八名，即可獲得抽獎資格！</li>
+            <li><b>參加規則：</b>選出心目中的冠軍隊伍，若該隊伍最終獲得前八名，即可獲得抽獎資格！總計抽出30名。</li>
             <li><b>獎勵說明：</b>成功預測者即可參加抽獎，有機會獲得精美小禮品。</li>
         </ul>
         <select id="teamSelection">
@@ -128,13 +127,15 @@
 
 <script>
     let count = 0, playing = false;
+// 在原本的 <script> 區塊中，將原本的函式改成這樣：
     function paddle() {
+        document.getElementById("bgMusic").play(); // 加入這行來播放音樂
         let id = document.getElementById('empId').value;
         if (!id) { alert("請記得先輸入工號喔！"); return; }
         if (!playing) {
             playing = true; count = 0;
             document.getElementById('count-display').innerText = count;
-            alert("賽事開始！請準備在 10 秒內全力衝刺！");
+            alert("賽事開始！");
             setTimeout(() => {
                 playing = false;
                 alert("時間到！您的總成績：" + count + " 下！");
@@ -145,10 +146,15 @@
     }
 
     function submitPrediction() {
+        document.getElementById("bgMusic").play(); // 加入這行來播放音樂
         let team = document.getElementById('teamSelection').value;
         if (!team) { alert("請選擇一隊喔！"); return; }
         alert("預測成功！您選擇的是：" + team);
     }
 </script>
+    <!-- 加入這段音樂來源 -->
+<audio id="bgMusic" loop>
+    <source src="https://actions.google.com/sounds/v1/sports/drag_race_start.ogg" type="audio/ogg">
+</audio>
 </body>
 </html>
