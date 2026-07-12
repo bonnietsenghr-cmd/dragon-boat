@@ -72,7 +72,7 @@ body {
     border: 1px solid rgba(255,255,255,0.8);
     text-align: left;
 }
-        .table-card {
+    .table-card {
     background: #ffffff;
     padding: 25px;
     margin-bottom: 25px;
@@ -82,6 +82,12 @@ body {
     overflow: hidden; /* 這會確保表格不會超出圓角範圍 */
 }
 
+.responsive-iframe {
+    width: 100%;
+    height: 400px; /* 您可以根據資料筆數調整這個高度 */
+    border: none;
+    display: block;
+}
 /* 確保 iframe 充滿空間且沒有邊框 */
 .table-iframe {
     width: 100%;
@@ -168,7 +174,7 @@ body {
         <div class="table-card">
     <iframe 
         src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9Ftm2HvMEqZwB8dOV4JeAoU-44R2tG2JvTaFXeTesIGMMimuAgvE3rjXNlLZbjBzvzsAJYBX-0hZp/pubhtml?gid=328708702&amp;single=true&amp;widget=false&amp;headers=false" 
-        class="table-iframe"
+        class="responsive-iframe"
         frameborder="0">
     </iframe>
         </div>
