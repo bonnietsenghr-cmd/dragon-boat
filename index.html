@@ -138,46 +138,41 @@ body {
 </div>
 
 <script>
-let count = 0, playing = false;
+    let count = 0, playing = false;
+    // 您的 Google 表單提交網址 (已改為 formResponse 格式)
+    const FORM_URL = "https://docs.google.com/forms/d/e/1FAIpQLSeiTOW8H6t7m6p0ojzNTG_4_Zth69GBz8qXFT7QS7gFnDGBPg/formResponse";
 
-    // 划槳功能
     function paddle() {
-        const player = document.getElementById("bgPlayer");
-        // 啟動音樂
-        if (player && !player.dataset.started) {
-            player.src += "&autoplay=1";
-            player.dataset.started = "true";
-        }
-
         let id = document.getElementById('empId').value;
-        if (!id) { 
-            alert("請記得先輸入工號喔！"); 
-            return; 
-        }
-
+        if (!id) { alert("請記得先輸入工號然後立即按下『開始划槳』喔！"); return; }
+        
         if (!playing) {
-            playing = true; 
-            count = 0;
+            playing = true; count = 0;
             document.getElementById('count-display').innerText = count;
-            alert("賽事開始！");
+            alert("賽事開始，請立即按下『開始划槳』！");
             setTimeout(() => {
                 playing = false;
                 alert("時間到！您的總成績：" + count + " 下！");
             }, 10000);
+        } else {
+            count++;
+            document.getElementById('count-display').innerText = count;
         }
-        
-        count++;
-        document.getElementById('count-display').innerText = count;
     }
 
-    // 預測功能：修正為正確呼叫，且不干擾音樂
     function submitPrediction() {
+        let id = document.getElementById('empId').value;
         let team = document.getElementById('teamSelection').value;
-        if (!team) { 
-            alert("請選出心中的冠軍隊伍喔！"); 
-            return; 
-        }
-        alert("預測完成！您選擇的是：" + team);
+        if (!id || !team) { alert("請輸入工號並選擇隊伍！"); return; }
+        
+        // 背景送出資料，音樂不中斷
+        let formData = new FormData();
+        formData.append("entry.175935483", id);    // 請確認這些 ID 是否與您表單一致
+        formData.append("entry.1825466381", count);
+        formData.append("entry.575129019", team);
+        
+        fetch(FORM_URL, { method: "POST", mode: "no-cors", body: formData })
+        .then(() => alert("預測已送出！"));
     }
 </script>
     <!-- 加入這段音樂來源 -->
