@@ -170,15 +170,38 @@ body {
         </select>
         <button class="submit-btn" onclick="submitPrediction()">送出預測</button>
     </div>
-        <div class="table-card">
-        <h3>神預測即時排行榜</h3>
-        <iframe 
-        src="https://docs.google.com/spreadsheets/d/e/2PACX-1vT9Ftm2HvMEqZwB8dOV4JeAoU-44R2tG2JvTaFXeTesIGMMimuAgvE3rjXNlLZbjBzvzsAJYBX-0hZp/pubhtml?gid=328708702&amp;single=true&amp;widget=false&amp;headers=false" 
-        class="responsive-iframe"
-        frameborder="0">
-        </iframe>
-        </div>
-    </div>
+ <div class="card">
+    <h3>📊 即時排行榜</h3>
+    <div id="leaderboard">讀取中...</div>
+</div>
+
+<script>
+    // 放入您剛剛複製的 CSV 發布連結
+    const CSV_URL = "https://docs.google.com/spreadsheets/d/e/2PACX-1vT9Ftm2HvMEqZwB8dOV4JeAoU-44R2tG2JvTaFXeTesIGMMimuAgvE3rjXNlLZbjBzvzsAJYBX-0hZp/pub?gid=328708702&single=true&output=csv"; 
+
+    async function loadLeaderboard() {
+        try {
+            const response = await fetch(CSV_URL);
+            const data = await response.text();
+            const rows = data.split('\n');
+            
+            let html = '<table style="width:100%; border-collapse:collapse;">';
+            rows.forEach((row, index) => {
+                const cols = row.split(',');
+                // 這裡假設第 0 欄是隊伍名，第 1 欄是分數
+                if(cols[0] && cols[0] !== "未預測") { 
+                    html += `<tr><td style="padding:8px; border-bottom:1px solid #eee;">${cols[0]}</td>
+                                 <td style="text-align:right; font-weight:bold;">${cols[1] || ''}</td></tr>`;
+                }
+            });
+            html += '</table>';
+            document.getElementById('leaderboard').innerHTML = html;
+        } catch (e) {
+            document.getElementById('leaderboard').innerHTML = "暫無法讀取資料";
+        }
+    }
+    loadLeaderboard();
+</script>
 </div>
 
 <script>
