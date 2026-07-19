@@ -33,7 +33,7 @@
         
         .comic-img { width: 100%; border-radius: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.1); margin-bottom: 15px; }
         
-        h1 { color: var(--deep-navy); margin-bottom: 20px; font-size: 1.8em; text-align: center; }
+        h1 { color: var(--deep-navy); margin-bottom: 20px; font-size: 1.8em; text-align: caenter; }
         h3 { color: var(--delta-blue); margin-top: 0; }
         
         #paddle-btn, .submit-btn { 
@@ -216,7 +216,7 @@ body {
         if (!playing) {
             playing = true; count = 0;
             document.getElementById('count-display').innerText = count;
-            alert("賽事開始，請立即按下『開始划槳』！");
+            alert("賽事開始，請立即按下『熱血划槳』！");
             setTimeout(() => {
                 playing = false;
                 alert("時間到！您的總成績：" + count + " 下！");
