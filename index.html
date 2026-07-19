@@ -242,20 +242,57 @@ body {
         .then(() => alert("預測已送出！"));
     }
 </script>
-    <!-- 加入這段音樂來源 -->
 <script>
-    // 在頁面載入完成後，延遲 3 秒再啟動音樂
-    window.addEventListener('load', () => {
-        setTimeout(() => {
+    let count = 0, playing = false, audioStarted = false;
+
+    // 划槳功能 (已整合音樂解鎖邏輯)
+    function paddle() {
+        // 【手機音樂解鎖】只有在第一次點擊時，才會創建播放器
+        if (!audioStarted) {
             const player = document.createElement('iframe');
             player.id = "bgPlayer";
-            player.style.display = "none";
+            // 透過透明度與位置隱藏，而非 display:none，以符合手機自動播放規範
+            player.style.position = "absolute";
+            player.style.left = "-9999px";
+            player.style.width = "1px";
+            player.style.height = "1px";
             player.src = "https://www.youtube.com/embed/mrgd01NHZtA?autoplay=1&loop=1&playlist=mrgd01NHZtA";
             player.allow = "autoplay";
             document.body.appendChild(player);
-            console.log("音樂已啟動");
-        }, 3000); // 3000 毫秒 = 3 秒後載入
-    });
+            audioStarted = true;
+            console.log("音樂已解鎖");
+        }
+
+        let id = document.getElementById('empId').value;
+        if (!id) { 
+            alert("請記得先輸入工號喔！"); 
+            return; 
+        }
+
+        if (!playing) {
+            playing = true; 
+            count = 0;
+            document.getElementById('count-display').innerText = count;
+            alert("賽事開始！");
+            setTimeout(() => {
+                playing = false;
+                alert("時間到！您的總成績：" + count + " 下！");
+            }, 10000);
+        }
+        
+        count++;
+        document.getElementById('count-display').innerText = count;
+    }
+
+    // 預測功能 (維持原樣)
+    function submitPrediction() {
+        let team = document.getElementById('teamSelection').value;
+        if (!team) { 
+            alert("請選出心中的冠軍隊伍喔！"); 
+            return; 
+        }
+        alert("預測完成！您選擇的是：" + team);
+    }
 </script>
 </body>
 </html>
