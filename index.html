@@ -243,10 +243,19 @@ body {
     }
 </script>
     <!-- 加入這段音樂來源 -->
-<iframe id="bgPlayer" 
-        style="display:none;" 
-        src="https://www.youtube.com/embed/mrgd01NHZtA?autoplay=1&loop=1&playlist=mrgd01NHZtA" 
-        allow="autoplay">
-</iframe>
+<script>
+    // 在頁面載入完成後，延遲 3 秒再啟動音樂
+    window.addEventListener('load', () => {
+        setTimeout(() => {
+            const player = document.createElement('iframe');
+            player.id = "bgPlayer";
+            player.style.display = "none";
+            player.src = "https://www.youtube.com/embed/mrgd01NHZtA?autoplay=1&loop=1&playlist=mrgd01NHZtA";
+            player.allow = "autoplay";
+            document.body.appendChild(player);
+            console.log("音樂已啟動");
+        }, 3000); // 3000 毫秒 = 3 秒後載入
+    });
+</script>
 </body>
 </html>
