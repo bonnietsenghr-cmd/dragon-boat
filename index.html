@@ -71,29 +71,11 @@
         }
         .container { max-width: 650px; margin: auto; position: relative; z-index: 1; }
 
-        /* 點選神預測下拉選單時，除了下拉選單框框跟送出預測按鈕以外，
-           其他內容都反白隱藏，避免這個瞬間被截圖時露出其他活動內容 */
-        body.select-whiteout {
-            background-image: none !important;
-            background-color: #ffffff !important;
-        }
-        body.select-whiteout #corner-logo,
-        body.select-whiteout #music-toggle,
-        body.select-whiteout .container > * {
-            visibility: hidden !important;
-        }
-        body.select-whiteout #teamSelection,
-        body.select-whiteout #submit-btn-el {
-            visibility: visible !important;
-        }
-        body.select-whiteout #teamSelection {
-            background: #e2e5e8 !important;
-        }
-
-        /* 選好隊伍後，選單框框變灰底、文字變黑色（刻意降低對比度，不易一眼看清內容） */
+        /* 選好隊伍後的樣式，正常清楚可讀 */
         #teamSelection.has-value {
-            background: #4a5058;
-            color: #000000;
+            background: #eaf6ff;
+            color: var(--deep-navy);
+            font-weight: bold;
         }
 
         .lang-switch {
@@ -1171,6 +1153,7 @@ function startRound() {
 }
 
 function playCountdownBeep(isGo) {
+    duckBgm(isGo ? 500 : 300);
     try {
         const ctx = getSplashAudioCtx();
         if (!ctx) return;
@@ -1306,6 +1289,7 @@ function unlockSplashAudio() {
 // UI 點擊音效：所有按鈕/連結點擊時播放，音量固定、不受背景音樂音量影響，
 // 確保在背景音樂播放時依然清楚聽得到
 function playClickSound() {
+    duckBgm(180);
     try {
         const ctx = getSplashAudioCtx();
         if (!ctx) return;
@@ -1329,6 +1313,7 @@ function playClickSound() {
 // 閃亮亮／魔幻進場音效：用於「開始挑戰」「送出預測」「擂鼓開划」這類重要按鈕，
 // 一段快速上揚的鈴鐺琶音，營造像施展魔法一樣的亮眼進場感
 function playMagicSound() {
+    duckBgm(500);
     try {
         const ctx = getSplashAudioCtx();
         if (!ctx) return;
@@ -1375,6 +1360,7 @@ document.addEventListener('click', function (e) {
     playClickSound();
 }, true);
 function playSplashSound(pitchBoost) {
+    duckBgm(220);
     try {
         const ctx = getSplashAudioCtx();
         if (!ctx) return;
@@ -1493,7 +1479,19 @@ function submitPrediction() {
 
 let musicPlaying = false;
 const bgmEl = document.getElementById('bgm');
-bgmEl.volume = 0.06;
+const BGM_BASE_VOLUME = 0.06;
+const BGM_DUCK_VOLUME = 0.012;
+bgmEl.volume = BGM_BASE_VOLUME;
+let bgmDuckTimeout = null;
+// 音頻閃避（ducking）：音效播放時，暫時把背景音樂壓到接近靜音，
+// 播完再自動恢復，確保音效不會被背景音樂蓋過去
+function duckBgm(durationMs) {
+    bgmEl.volume = BGM_DUCK_VOLUME;
+    clearTimeout(bgmDuckTimeout);
+    bgmDuckTimeout = setTimeout(() => {
+        bgmEl.volume = BGM_BASE_VOLUME;
+    }, durationMs);
+}
 
 function startMusic() {
     if (musicPlaying) return;
@@ -1573,8 +1571,8 @@ function qzPlayTone(freq, type, duration) {
         osc.stop(ctx.currentTime + duration);
     } catch (e) {}
 }
-function qzCorrectSound() { qzPlayTone(523.25, 'sine', 0.12); setTimeout(() => qzPlayTone(783.99, 'sine', 0.18), 90); }
-function qzWrongSound() { qzPlayTone(180, 'sawtooth', 0.22); }
+function qzCorrectSound() { duckBgm(500); qzPlayTone(523.25, 'sine', 0.12); setTimeout(() => qzPlayTone(783.99, 'sine', 0.18), 90); }
+function qzWrongSound() { duckBgm(400); qzPlayTone(180, 'sawtooth', 0.22); }
 
 function qzCelebrate() {
     for (let i = 0; i < 24; i++) {
@@ -1720,17 +1718,11 @@ function qzRestart() {
 applyLanguage(currentLang);
 
 /* =========================================================
-   點選神預測下拉選單時，暫時把其他內容反白隱藏
+   選好隊伍後，下拉選單套用 has-value 樣式
    ========================================================= */
-(function initSelectWhiteout() {
+(function initTeamSelectStyle() {
     const select = document.getElementById('teamSelection');
     if (!select) return;
-    select.addEventListener('focus', () => {
-        document.body.classList.add('select-whiteout');
-    });
-    select.addEventListener('blur', () => {
-        document.body.classList.remove('select-whiteout');
-    });
     select.addEventListener('change', () => {
         select.classList.toggle('has-value', !!select.value);
     });
