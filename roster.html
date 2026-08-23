@@ -1,0 +1,376 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>2026 乘風破浪 熱血龍舟爭霸戰｜神預測隊伍單</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@400;500;700;900&family=Zhi+Mang+Xing&family=DM+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#0E4C57;
+    --ink-soft:#3E7480;
+    --teal:#2FAFA3;
+    --teal-deep:#1E8C82;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{ -webkit-text-size-adjust:100%; }
+  body{
+    min-height:100vh;
+    background: linear-gradient(180deg, #EAF6F2 0%, #DDF0EE 55%, #EAF6F2 100%);
+    font-family:'Noto Sans TC', sans-serif;
+    color: var(--ink);
+  }
+
+  /* ---------- HERO ---------- */
+  .hero{
+    position:relative;
+    width:100%;
+    background-image: url('images/roster_bg.jpg');
+    background-size:cover;
+    background-position:center 60%;
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+    justify-content:center;
+    padding: clamp(28px,6vw,48px) clamp(16px,4vw,20px) clamp(46px,8vw,64px);
+    text-align:center;
+    overflow:hidden;
+  }
+  .hero::after{
+    content:"";
+    position:absolute; inset:0;
+    background: linear-gradient(180deg, rgba(255,255,255,0.06) 0%, rgba(255,255,255,0.35) 75%, #EAF6F2 100%);
+    pointer-events:none;
+  }
+  .hero-eyebrow{
+    position:relative; z-index:2;
+    font-family:'DM Mono', monospace;
+    letter-spacing:0.4em;
+    font-size: clamp(9px, 1.6vw, 12px);
+    color:#0E4C57;
+    background: rgba(255,255,255,0.55);
+    border:1px solid rgba(14,76,87,0.25);
+    padding: 5px clamp(10px,3vw,18px);
+    border-radius:999px;
+    margin-bottom: clamp(10px,2vw,16px);
+  }
+  .hero-title-wrap{
+    position:relative; z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: clamp(6px,1.5vw,14px);
+    flex-wrap:wrap;
+  }
+  .hero-logo{
+    height: clamp(110px, 20vw, 210px);
+    width:auto;
+    display:block;
+  }
+  .hero-inner{
+    position:relative; z-index:2;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    gap: clamp(10px, 4vw, 56px);
+    flex-wrap:wrap;
+    max-width: 1080px;
+    margin: 0 auto;
+  }
+  .hero-text{
+    display:flex;
+    flex-direction:column;
+    align-items:center;
+  }
+  .hero-mascot{
+    height: clamp(130px, 23vw, 250px);
+    width:auto;
+    flex-shrink:0;
+    filter: drop-shadow(0 10px 18px rgba(14,76,87,0.22));
+  }
+  .hero-title{
+    font-weight:900;
+    font-size: clamp(22px, 5.5vw, 42px);
+    color:#0E4C57;
+    text-shadow: 0 4px 18px rgba(255,255,255,0.6);
+  }
+  .hero-sub{
+    position:relative; z-index:2;
+    margin-top: clamp(6px,1.5vw,10px);
+    font-size: clamp(11.5px, 2.3vw, 15px);
+    color: var(--ink-soft);
+    font-weight:500;
+    letter-spacing:0.04em;
+  }
+
+  /* ---------- LIST ---------- */
+  .content{
+    max-width: 1180px;
+    margin: 0 auto;
+    padding: clamp(20px,4vw,36px) clamp(14px,4vw,24px) clamp(40px,6vw,60px);
+  }
+  .grid{
+    display:grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: clamp(10px, 1.8vw, 16px);
+  }
+  @media (max-width: 900px){
+    .grid{ grid-template-columns: repeat(2, 1fr); }
+  }
+  @media (max-width: 560px){
+    .grid{ grid-template-columns: 1fr; }
+  }
+  .card{
+    display:flex;
+    align-items:center;
+    gap: clamp(10px, 1.8vw, 14px);
+    background:#fff;
+    border-radius: 14px;
+    padding: clamp(10px,1.8vw,13px) clamp(12px,2vw,16px);
+    box-shadow: 0 2px 8px rgba(14,76,87,0.08);
+    border: 1px solid rgba(14,76,87,0.06);
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+  }
+  .card:hover{
+    transform: translateY(-2px);
+    box-shadow: 0 6px 16px rgba(14,76,87,0.14);
+  }
+  .num{
+    flex-shrink:0;
+    width: clamp(30px, 5vw, 36px);
+    height: clamp(30px, 5vw, 36px);
+    border-radius:50%;
+    background: linear-gradient(160deg, var(--teal), var(--teal-deep));
+    color:#fff;
+    font-family:'DM Mono', monospace;
+    font-weight:700;
+    font-size: clamp(13px, 2.2vw, 15px);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+  }
+  .name{
+    flex:1;
+    min-width:0;
+    font-weight:700;
+    font-size: clamp(13.5px, 2.4vw, 15.5px);
+    line-height:1.35;
+    word-break: break-word;
+  }
+  .person{
+    flex-shrink:0;
+    font-family:'DM Mono', monospace;
+    font-weight:500;
+    font-size: clamp(12.5px, 2.1vw, 14px);
+    color: var(--ink-soft);
+    padding-left: clamp(8px,1.6vw,12px);
+    border-left: 1px dashed #CFE4E1;
+    white-space:nowrap;
+  }
+
+  .footer-note{
+    text-align:center;
+    padding: 6px 20px 30px;
+    font-size: clamp(10.5px,1.8vw,12px);
+    color:var(--ink-soft);
+  }
+
+  @media (max-width: 480px){
+    .card{ flex-wrap:wrap; }
+  }
+
+  .boat-row{
+    display:flex;
+    justify-content:flex-end;
+    margin-top: clamp(8px, 2.6vw, 22px);
+  }
+  .boat-img{
+    width: clamp(190px, 32vw, 400px);
+    height:auto;
+    filter: drop-shadow(0 8px 16px rgba(14,76,87,0.16));
+  }
+  @media (max-width: 560px){
+    .boat-row{ justify-content:center; }
+    .boat-img{ width: 62vw; }
+  }
+</style>
+</head>
+<body>
+
+  <div class="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <div class="hero-eyebrow">DRAGON BOAT CHAMPIONSHIP</div>
+        <div class="hero-title-wrap">
+          <img class="hero-logo" src="images/roster_hero_logo.png" alt="2026乘風破浪">
+          <span class="hero-title">神預測隊伍單</span>
+        </div>
+        <div class="hero-sub">熱血龍舟爭霸戰・全 37 隊參賽名單</div>
+      </div>
+      <img class="hero-mascot" src="images/roster_mascot.png" alt="划槳選手">
+    </div>
+  </div>
+
+  <div class="content">
+    <div class="grid">
+      <div class="card">
+      <div class="num">1</div>
+      <div class="name">BBC</div>
+      <div class="person">林○燕</div>
+    </div><div class="card">
+      <div class="num">2</div>
+      <div class="name">划起來通通給我划起來</div>
+      <div class="person">呂○篁</div>
+    </div><div class="card">
+      <div class="num">3</div>
+      <div class="name">羽知識，衝股價</div>
+      <div class="person">林○英</div>
+    </div><div class="card">
+      <div class="num">4</div>
+      <div class="name">ITMSSI 是否在台達拯救過製造系統</div>
+      <div class="person">陳○宇</div>
+    </div><div class="card">
+      <div class="num">5</div>
+      <div class="name">好划一直划</div>
+      <div class="person">阮○翰</div>
+    </div><div class="card">
+      <div class="num">6</div>
+      <div class="name">女友不會李多慧</div>
+      <div class="person">劉○升</div>
+    </div><div class="card">
+      <div class="num">7</div>
+      <div class="name">一槳一心、一划到底，管你划不划，我們一起槳上划！</div>
+      <div class="person">戴○智</div>
+    </div><div class="card">
+      <div class="num">8</div>
+      <div class="name">資通訊DataCenter整合艦隊</div>
+      <div class="person">董○明</div>
+    </div><div class="card">
+      <div class="num">9</div>
+      <div class="name">中壢健身路跑社</div>
+      <div class="person">黃○芥</div>
+    </div><div class="card">
+      <div class="num">10</div>
+      <div class="name">只會出一張嘴</div>
+      <div class="person">李○龍</div>
+    </div><div class="card">
+      <div class="num">11</div>
+      <div class="name">加入台達，人生發達3.0</div>
+      <div class="person">郭○婕</div>
+    </div><div class="card">
+      <div class="num">12</div>
+      <div class="name">追我要排隊4.0</div>
+      <div class="person">鄭○緯</div>
+    </div><div class="card">
+      <div class="num">13</div>
+      <div class="name">龍咚龍咚搶第一</div>
+      <div class="person">林○傑</div>
+    </div><div class="card">
+      <div class="num">14</div>
+      <div class="name">水冷划冷水</div>
+      <div class="person">李○修</div>
+    </div><div class="card">
+      <div class="num">15</div>
+      <div class="name">合力要他命EX</div>
+      <div class="person">何○州</div>
+    </div><div class="card">
+      <div class="num">16</div>
+      <div class="name">乘風破爛用腳划龍舟</div>
+      <div class="person">徐○檀</div>
+    </div><div class="card">
+      <div class="num">17</div>
+      <div class="name">滑達硬漢不會停</div>
+      <div class="person">何○誠</div>
+    </div><div class="card">
+      <div class="num">18</div>
+      <div class="name">台巴達勇士2.0</div>
+      <div class="person">葉○羣</div>
+    </div><div class="card">
+      <div class="num">19</div>
+      <div class="name">雷蛇的大蟒蛇</div>
+      <div class="person">盧○安</div>
+    </div><div class="card">
+      <div class="num">20</div>
+      <div class="name">EVS電馭破浪者</div>
+      <div class="person">許○誠</div>
+    </div><div class="card">
+      <div class="num">21</div>
+      <div class="name">孑孓</div>
+      <div class="person">張○安</div>
+    </div><div class="card">
+      <div class="num">22</div>
+      <div class="name">台達鐵達尼</div>
+      <div class="person">周○國</div>
+    </div><div class="card">
+      <div class="num">23</div>
+      <div class="name">台達DD龍</div>
+      <div class="person">高○恩</div>
+    </div><div class="card">
+      <div class="num">24</div>
+      <div class="name">佳人們講龍舟了</div>
+      <div class="person">江○原</div>
+    </div><div class="card">
+      <div class="num">25</div>
+      <div class="name">划水第一名</div>
+      <div class="person">程○綸</div>
+    </div><div class="card">
+      <div class="num">26</div>
+      <div class="name">ESP龍抬頭</div>
+      <div class="person">黃○瑋</div>
+    </div><div class="card">
+      <div class="num">27</div>
+      <div class="name">量子機器人</div>
+      <div class="person">陳○斌</div>
+    </div><div class="card">
+      <div class="num">28</div>
+      <div class="name">滑蛋瘦肉舟隊</div>
+      <div class="person">洪○蔓</div>
+    </div><div class="card">
+      <div class="num">29</div>
+      <div class="name">全糖不減速</div>
+      <div class="person">吳○聖</div>
+    </div><div class="card">
+      <div class="num">30</div>
+      <div class="name">超過我就是你不隊</div>
+      <div class="person">鍾○文</div>
+    </div><div class="card">
+      <div class="num">31</div>
+      <div class="name">晶舟勇士隊</div>
+      <div class="person">陳○翰</div>
+    </div><div class="card">
+      <div class="num">32</div>
+      <div class="name">晶皮力進隊</div>
+      <div class="person">鍾○萍</div>
+    </div><div class="card">
+      <div class="num">33</div>
+      <div class="name">Taina very sweet</div>
+      <div class="person">阿○瓦</div>
+    </div><div class="card">
+      <div class="num">34</div>
+      <div class="name">綠咖哩划椰奶</div>
+      <div class="person">泰○彭</div>
+    </div><div class="card">
+      <div class="num">35</div>
+      <div class="name">酸辣龍蝦湯</div>
+      <div class="person">泰○來</div>
+    </div><div class="card">
+      <div class="num">36</div>
+      <div class="name">槳拌青木瓜</div>
+      <div class="person">泰○才</div>
+    </div><div class="card">
+      <div class="num">37</div>
+      <div class="name">涼拌肌肉隊</div>
+      <div class="person">泰○差</div>
+    </div>
+    </div>
+    <div class="boat-row">
+      <img class="boat-img" src="images/roster_boat.png" alt="龍舟隊伍">
+    </div>
+  </div>
+
+  <div class="footer-note">2026 乘風破浪熱血龍舟爭霸戰</div>
+
+</body>
+</html>
